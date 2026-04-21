@@ -69,13 +69,16 @@ const onFiles = async (ev: Event) => {
 <template>
   <v-app>
     <v-main>
-      <div class="app-container">
-        <h1 class="mb-2">trd-ovr-vue</h1>
-        <p class="text-medium-emphasis mb-4">Phase 1 MVP: FinZero/Trade Republic/Scalable CSV parser + parity reports.</p>
+      <div class="app-container report-shell">
+        <v-card class="pa-6 mb-4 report-header glass-backdrop" elevation="6">
+          <h1 class="text-h3 font-weight-bold mb-2">trd-ovr-vue</h1>
+          <p class="text-subtitle-1 text-medium-emphasis mb-0">Phase 1 MVP: FinZero / Trade Republic / Scalable CSV parser + parity reports.</p>
+        </v-card>
 
-        <v-card class="mb-4">
+        <v-card class="mb-4" elevation="4">
+          <v-card-title>Import</v-card-title>
           <v-card-text>
-            <v-file-input label="Import CSV files" multiple accept=".csv" @change="onFiles" />
+            <v-file-input label="Import CSV files" multiple accept=".csv" @change="onFiles" variant="outlined" />
           </v-card-text>
         </v-card>
 
@@ -85,15 +88,15 @@ const onFiles = async (ev: Event) => {
 
         <v-row>
           <v-col cols="12" md="2" v-for="(val, key) in top" :key="key">
-            <v-card>
+            <v-card class="kpi-card" elevation="4">
               <v-card-title class="text-capitalize">{{ key }}</v-card-title>
-              <v-card-text>{{ formatNum(val) }}</v-card-text>
+              <v-card-text class="text-h6">{{ formatNum(val) }}</v-card-text>
             </v-card>
           </v-col>
         </v-row>
 
-        <h2 class="mt-4">Annual matrix</h2>
-        <v-table density="compact">
+        <h2 class="section-title">Annual matrix</h2>
+        <v-table density="compact" class="report-table">
           <tbody>
             <tr v-for="row in annual" :key="row.parser">
               <td>{{ row.parser }}</td>
@@ -102,9 +105,9 @@ const onFiles = async (ev: Event) => {
           </tbody>
         </v-table>
 
-        <h2>Monthly matrix ({{ selectedYear }})</h2>
-        <v-text-field v-model.number="selectedYear" type="number" label="Year" max-width="180" />
-        <v-table density="compact">
+        <h2 class="section-title">Monthly matrix ({{ selectedYear }})</h2>
+        <v-text-field v-model.number="selectedYear" type="number" label="Year" max-width="180" variant="outlined" />
+        <v-table density="compact" class="report-table">
           <tbody>
             <tr>
               <td v-for="(m, idx) in monthly" :key="idx">{{ idx + 1 }}: {{ formatNum(m) }}</td>
@@ -112,10 +115,10 @@ const onFiles = async (ev: Event) => {
           </tbody>
         </v-table>
 
-        <h2>By-date (calendar week)</h2>
+        <h2 class="section-title">By-date (calendar week)</h2>
         <div v-for="(txs, week) in byWeek" :key="week" class="mb-4">
           <strong>{{ week }}</strong> — subtotal: {{ formatNum(txs.reduce((s, t) => s + t.winlossFifo, 0)) }}
-          <v-table density="compact">
+          <v-table density="compact" class="report-table mt-2">
             <tbody>
               <tr v-for="tx in txs" :key="`${tx.parserType}-${tx.id}`">
                 <td>{{ tx.date.slice(0, 10) }}</td>
@@ -134,8 +137,8 @@ const onFiles = async (ev: Event) => {
           </v-table>
         </div>
 
-        <h2>By-ISIN open</h2>
-        <v-table density="compact">
+        <h2 class="section-title">By-ISIN open</h2>
+        <v-table density="compact" class="report-table">
           <tbody>
             <tr v-for="s in openShares" :key="s.isin">
               <td>{{ s.isin }}</td>
@@ -146,8 +149,8 @@ const onFiles = async (ev: Event) => {
           </tbody>
         </v-table>
 
-        <h2>Dividends</h2>
-        <v-table density="compact">
+        <h2 class="section-title">Dividends</h2>
+        <v-table density="compact" class="report-table">
           <tbody>
             <tr v-for="d in dividends" :key="d.id">
               <td>{{ d.date.slice(0, 10) }}</td>
@@ -158,8 +161,8 @@ const onFiles = async (ev: Event) => {
           </tbody>
         </v-table>
 
-        <h2>By-ISIN closed</h2>
-        <v-table density="compact">
+        <h2 class="section-title">By-ISIN closed</h2>
+        <v-table density="compact" class="report-table">
           <tbody>
             <tr v-for="s in closedShares" :key="s.isin">
               <td>{{ s.isin }}</td>
@@ -172,3 +175,34 @@ const onFiles = async (ev: Event) => {
     </v-main>
   </v-app>
 </template>
+
+<style scoped>
+.report-shell {
+  padding-top: 16px;
+  padding-bottom: 48px;
+}
+
+.report-header {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.section-title {
+  margin: 20px 0 10px;
+  font-size: 1.65rem;
+  font-weight: 700;
+}
+
+.kpi-card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+}
+
+.report-table {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.report-table :deep(tbody tr:nth-child(odd)) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+</style>
