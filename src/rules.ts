@@ -1,0 +1,1 @@
+export const required = (value: unknown): boolean => !!value;

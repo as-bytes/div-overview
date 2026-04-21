@@ -1,0 +1,72 @@
+{
+  "name": "my-vite-react",
+  "description": "QSt-Refund",
+  "version": "0.0.1",
+  "type": "module",
+  "cloudflare": {
+    "label": "Vite React Template",
+    "products": [
+      "Workers"
+    ],
+    "categories": [],
+    "icon_urls": [
+      "https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/5ca0ca32-e897-4699-d4c1-6b680512f000/public"
+    ],
+    "preview_image_url": "https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/fc7b4b62-442b-4769-641b-ad4422d74300/public",
+    "publish": true
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.2.96",
+    "chart.js": "4.5.0",
+    "dexie": "^4.0.11",
+    "hono": "4.8.2",
+    "jspdf": "^3.0.1",
+    "pinia": "^3.0.3",
+    "vite-plugin-vuetify": "^2.1.2",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "vuetify": "^3.9.2"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "1.7.5",
+    "@eslint/js": "^9.32.0",
+    "@types/node": "24.0.4",
+    "@vitejs/plugin-vue": "^6.0.0",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/eslint-config-typescript": "^14.6.0",
+    "@vue/test-utils": "^2.4.6",
+    "@vue/tsconfig": "^0.7.0",
+    "@vuepic/vue-datepicker": "11.0.2",
+    "eslint": "^9.32.0",
+    "eslint-plugin-react-hooks": "5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "eslint-plugin-vue": "^10.4.0",
+    "globals": "^16.3.0",
+    "jiti": "^2.5.1",
+    "jsdom": "^26.1.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.39.1",
+    "vite": "^6.1.0",
+    "vitest": "^3.2.4",
+    "vue-tsc": "^3.0.4",
+    "wrangler": "4.21.x"
+  },
+  "scripts": {
+    "build": "tsc -b && vite build",
+    "cf-typegen": "wrangler types",
+    "check": "tsc -b && vite build && wrangler deploy --dry-run",
+    "deploy": "wrangler deploy",
+    "wrangler:dev": "wrangler dev",
+    "dev": "vite",
+    "npm:install": "npm install",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "preview": "npm run build && vite preview",
+    "vitest:unit": "vitest run"
+  }
+}
