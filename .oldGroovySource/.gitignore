@@ -1,0 +1,8 @@
+/out/
+/src/main/groovy/com/asbytes/.idea
+*.bak
+/summaries/2*
+OrderStatementParser.iws
+/dataSources/
+/.ideaDataSources/
+~*.*

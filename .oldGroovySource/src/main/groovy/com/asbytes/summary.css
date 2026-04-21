@@ -1,0 +1,71 @@
+body, .blank { background-color: #f9f9ff; max-width: 850px; margin: auto; }
+
+table { margin: auto; width: 100%; padding: 15px 20px 10px 10px; }
+tbody tr[disabled='true'] { text-decoration: line-through; }
+tbody tr[disabled='true']:first-child { border-top: 2px solid black; margin-top: 10px; }
+
+tbody tr[disabled='true']:nth-child(1)  { border-top: 20px solid black; }
+
+tbody tr.all { cursor:pointer; }
+tbody tr:hover * { background-color: yellow; color: black!important; }
+.hidden { display: none; }
+.show { display: block; }
+
+td .isin { float:right; }
+
+th, td { border: 1px solid black; 
+         font-family: Consolas; 
+         font-size: 11pt; }
+th { padding: 3px; }
+
+thead tr td:nth-child(1) { text-align: center; }
+thead tr td { text-align: right; padding: 0px 15px 0px 15px }
+
+tbody tr.all td { border-bottom: 1px dashed black; }
+
+tr.all, td[colspan]:not(.blank), tr th { background-color: #ffffff; }
+tbody tr.all, td[colspan] div { width: 230px; white-space: nowrap; text-overflow: ellipsis; word-break: keep-all; overflow: hidden; }
+
+tr.all td:first-child a { color: darkblue; text-decoration: none; }
+tr.all td:first-child a:hover { color: blue; text-decoration: underline; }
+tr:not(.all) { background-color: #f5f5f5; }
+
+table tbody tr td:not([colspan]) { text-align: right; padding: 0px 15px 0px 15px; }
+tr td[colspan] { padding: 0px 5px 0px 5px; }
+tr:not(.all) td:nth-child(1), tr:not(.all) > td:nth-child(2) { text-align: center; }
+tr td[colspan] { text-align: left; }
+
+/** BLANK LINE **/
+.blank { border: none; display: none; }
+/* .blank:before { content: '\00a0'; } */
+
+/** CHECKED OPEN AMOUNT BOXES **/
+input[type='checkbox'] { float: left; cursor: pointer; 
+  box-shadow: inset 0px 0px 0px 10px red;
+}
+input[type="checkbox"]:checked {
+  box-shadow: inset 0px 0px 0px 10px #00ff00;
+}
+
+
+/** CELL COLORS **/
+td[title^='+'], td[title^='SELL'] { color: #00aa00; }
+td[title^='-'], td[title^='BUY'] { color: red; }
+
+td[title^='SELL'], td[title^='SELL'] ~ td { border-color: #008800; }
+td[title^='BUY'], td[title^='BUY'] ~ td { border-color: #880000; }
+
+td[title^='DIV'], td[title^='DIV'] ~ td { color: blue; border: 1px dashed blue; }
+
+td[title^='DIV'], td[title^='TAX'] ~ td { color: yellow; }
+
+
+td[title^='+0,00'], td[title^='-,--'], td[title^='--.--.----'] { color: silver; }
+
+/** NEGATIVE OPEN AMOUNT **/ 
+tr.all td:nth-child(2)[title^='-'] { background-color: yellow; }
+
+/** SUMMARIES **/
+.summaries .month { font-weight: bold; border-bottom: 1px solid black; white-space: nowrap; }
+.summaries { font-size: 8pt; text-align: center; }
+.summaries td { font-size: 8pt; text-align: center!important; width: 45px; }
