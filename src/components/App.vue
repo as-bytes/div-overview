@@ -183,7 +183,7 @@ const onFiles = async (ev: Event) => {
 }
 
 .report-header {
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.10);
 }
 
 .section-title {
@@ -193,8 +193,8 @@ const onFiles = async (ev: Event) => {
 }
 
 .kpi-card {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: linear-gradient(145deg, rgba(255,255,255,1), rgba(247,249,252,1));
 }
 
 .report-table {
@@ -203,6 +203,6 @@ const onFiles = async (ev: Event) => {
 }
 
 .report-table :deep(tbody tr:nth-child(odd)) {
-  background-color: rgba(255, 255, 255, 0.02);
+  background-color: rgba(24, 103, 192, 0.04);
 }
 </style>
